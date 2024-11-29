@@ -3,7 +3,7 @@ import {assets} from '../assets/assets'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
- const Navbar = () => {
+ export const Navbar = () => {
 
     const navigate = useNavigate();
   return (
@@ -38,4 +38,3 @@ import { useNavigate } from 'react-router-dom'
     </div>
   );
 }
-export default Navbar
