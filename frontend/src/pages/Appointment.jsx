@@ -137,7 +137,7 @@ export const Appointment = () => {
     </div>
   ) : (
     <div className="p-5 max-w-4xl mx-auto"> {/* Centered loading message */}
-      <p className="text-center">Loading doctor details...</p>
+      <p classNames="text-center">Loading doctor details...</p>
     </div>
   );    
 };
