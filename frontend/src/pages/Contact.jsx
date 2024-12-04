@@ -15,7 +15,7 @@ export const Contact = () => {
           <p>Tel: 08187422213 <br /> Suit 23 Abijo GRA Nigeria</p>
           <p className='font-semibold text-lg'>Careers at flexiDigiHealth</p>
           <p>Learn more about our teams and job openings</p>
-          <button className='bg-primary text-white px-4 py-2 rounded-full'>Explore more</button>
+          <button className='bg-primary text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300'>Explore more</button>
         </div>
       </div>
     </div>
