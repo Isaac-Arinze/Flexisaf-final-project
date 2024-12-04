@@ -20,7 +20,7 @@ import { useParams } from 'react-router-dom'
             </NavLink>
         </ul>
         <ul>
-            <NavLink to='/doctor'>
+            <NavLink to='/doctors'>
                 <li className='py-1'>ALL DOCTORS</li>
                     <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto' />
             </NavLink>
