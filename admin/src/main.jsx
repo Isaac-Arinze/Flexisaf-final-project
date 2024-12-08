@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App.jsx';
+import './index.css'; // Ensure the path is correct
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import AdminContextProvider from '../context/AdminContext';
 import DoctorContextProvider from '../context/DoctorContext';
