@@ -37,7 +37,7 @@ const addDoctor = async (req, res) => {
             experience,
             about,
             fees,
-            address: JSON.parse(address),
+            address, 
             date: Date.now(),
             gender,
             dob,
@@ -54,6 +54,7 @@ const addDoctor = async (req, res) => {
 };
 
 // API for admin login
+// API for admin login
 const loginAdmin = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -68,5 +69,6 @@ const loginAdmin = async (req, res) => {
         res.json({ success: false, message: error.message });
     }
 };
+
 
 export { addDoctor, loginAdmin };
