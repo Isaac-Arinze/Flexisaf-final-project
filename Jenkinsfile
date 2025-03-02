@@ -14,6 +14,8 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
+                    cd frontend  
+                    containing package.json
                     npm install
                     npm run build
                     ls -la
