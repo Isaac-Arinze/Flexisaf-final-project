@@ -29,7 +29,7 @@ pipeline {
                     else
                         echo "Error: package.json not found in frontend directory"
                         exit 1
-                    
+                    fi
                 '''
             }
         }
