@@ -15,24 +15,19 @@ pipeline {
                     pwd
                     echo "Listing files in workspace:"
                     ls -la
-                    echo "Checking for frontend directory..."
-                    if [ -d frontend ]; then
-                        echo "frontend directory found"
-                        cd frontend
-                        echo "Listing files in frontend directory:"
-                        ls -la
-                        if [ -f package.json ]; then
-                            echo "package.json found in frontend directory"
-                            node --version
-                            npm --version
-                            npm install
-                            npm run build
-                        else
-                            echo "Error: package.json not found in frontend directory"
-                            exit 1
-                        fi
+                    echo "Navigating to frontend directory..."
+                    cd frontend
+                    echo "Listing files in frontend directory:"
+                    ls -la
+                    echo "Checking for package.json..."
+                    if [ -f package.json ]; then
+                        echo "package.json found"
+                        node --version
+                        npm --version
+                        npm install
+                        npm run build
                     else
-                        echo "Error: frontend directory not found"
+                        echo "Error: package.json not found in frontend directory"
                         exit 1
                     fi
                 '''
