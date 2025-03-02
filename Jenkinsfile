@@ -12,6 +12,9 @@ pipeline {
             steps {
                 sh '''
                     ls -la
+                    echo "Navigating to frontend directory..."
+                    cd frontend
+                    ls -la
                     node --version
                     npm --version
                     npm ci
