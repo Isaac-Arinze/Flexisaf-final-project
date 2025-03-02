@@ -18,6 +18,13 @@ pipeline {
                     node --version
                     npm --version
                     npm ci
+                    echo "Checking for react-router-dom..."
+                    if npm list react-router-dom; then
+                        echo "react-router-dom is installed"
+                    else
+                        echo "react-router-dom is not installed, installing..."
+                        npm install react-router-dom
+                    fi
                     npm run build
                     ls -la
                 '''
