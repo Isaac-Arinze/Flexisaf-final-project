@@ -24,6 +24,10 @@ pipeline {
                         echo "package.json found"
                         node --version
                         npm --version
+                        # Install react-router-dom explicitly
+                        echo "Installing react-router-dom..."
+                        npm install react-router-dom --save
+                        # Then continue with normal build process
                         npm install
                         npm run build
                     else
