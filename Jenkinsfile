@@ -11,31 +11,12 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo "Current directory:"
-                    pwd
-                    echo "Listing files in workspace:"
                     ls -la
-                    echo "Navigating to frontend directory..."
-                    cd frontend
-                    echo "Listing files in frontend directory:"
+                    node --version
+                    npm --version
+                    npm install
+                    npm run build
                     ls -la
-                    echo "Checking for package.json..."
-                    if [ -f package.json ]; then
-                        echo "package.json found"
-                        node --version
-                        npm --version
-                        # Install missing dependencies
-                        echo "Installing react-router-dom..."
-                        npm install react-router-dom --save
-                        echo "Installing react-datepicker..."
-                        npm install react-datepicker --save
-                        # Then continue with normal build process
-                        npm install
-                        npm run build
-                    else
-                        echo "Error: package.json not found in frontend directory"
-                        exit 1
-                    fi
                 '''
             }
         }
