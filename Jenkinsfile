@@ -24,9 +24,11 @@ pipeline {
                         echo "package.json found"
                         node --version
                         npm --version
-                        # Install react-router-dom explicitly
+                        # Install missing dependencies
                         echo "Installing react-router-dom..."
                         npm install react-router-dom --save
+                        echo "Installing react-datepicker..."
+                        npm install react-datepicker --save
                         # Then continue with normal build process
                         npm install
                         npm run build
