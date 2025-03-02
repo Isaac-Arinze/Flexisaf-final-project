@@ -34,6 +34,10 @@ pipeline {
                         echo "react-datepicker is not installed, installing..."
                         npm install react-datepicker
                     fi
+                    if ! npm list moment; then
+                        echo "moment is not installed, installing..."
+                        npm install moment
+                    fi
                     echo "Building the project..."
                     npm run build
                     echo "Listing files after build:"
