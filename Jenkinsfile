@@ -14,7 +14,8 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
-                    npm ci
+                    cd frontend  # Navigate to the frontend folder
+                    npm ci       # Install dependencies using package-lock.json
                     npm run build
                     ls -la
                 '''
