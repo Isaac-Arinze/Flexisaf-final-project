@@ -1,21 +1,67 @@
-import React, { useState } from 'react';
-import hospitalImage from '../assets/hospital_image.jpg'; // Ensure you have your image in the assets folder
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import hospitalImage from '../assets/hospital_image.jpg';
+import { EmailVerification } from '../components/EmailVerification';
+import { AppContext } from '../context/AppContext';
 
 export const Login = () => {
   const [state, setState] = useState('Sign Up');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [showVerification, setShowVerification] = useState(false);
+  const [pendingEmail, setPendingEmail] = useState('');
 
-  // This will not reload the webpage if you submit the form
+  const { registerUser, loginUser, loading } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  // Handle form submission
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
+    if (state === 'Sign Up') {
+      // Registration
+      const result = await registerUser(name, email, password);
+      if (result.success) {
+        setPendingEmail(email);
+        setShowVerification(true);
+      }
+    } else {
+      // Login
+      const result = await loginUser(email, password);
+      if (result.success) {
+        navigate('/');
+      } else if (result.requiresVerification) {
+        setPendingEmail(email);
+        setShowVerification(true);
+      }
+    }
   }
 
-  // Toggle between Sign Up and Login states
-  const toggleState = () => {
-    setState(state === 'Sign Up' ? 'Login' : 'Sign Up');
+  // Handle verification success
+  const handleVerificationSuccess = () => {
+    setShowVerification(false);
+    setState('Login');
+    setEmail(pendingEmail);
+    setPassword('');
+    setName('');
+  }
+
+  // Handle back to login
+  const handleBackToLogin = () => {
+    setShowVerification(false);
+    setPendingEmail('');
+  }
+
+  // Show email verification component
+  if (showVerification) {
+    return (
+      <EmailVerification
+        email={pendingEmail}
+        onVerificationSuccess={handleVerificationSuccess}
+        onBack={handleBackToLogin}
+      />
+    );
   }
 
   return (
@@ -40,7 +86,9 @@ export const Login = () => {
             <p className="font-semibold">Password</p>
             <input type="password" className="w-full p-2 border rounded mt-1" onChange={(e) => setPassword(e.target.value)} value={password} required />
           </div>
-          <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300">{state === 'Sign Up' ? "Create Account" : "Login"}</button>
+          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300" disabled={loading}>
+            {loading ? 'Processing...' : (state === 'Sign Up' ? "Create Account" : "Login")}
+          </button>
           <div className="mt-4 text-center">
             <p className="text-gray-600">
               {state === 'Sign Up' ? (

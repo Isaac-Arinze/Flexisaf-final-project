@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { assets } from "../assets/assets";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [token, setToken] = useState(true);
+  const { token, logout } = useContext(AppContext);
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-md fixed w-full z-50">
@@ -82,7 +83,7 @@ export const Navbar = () => {
                   </p>
                   <p
                     onClick={() => {
-                      setToken(false);
+                      logout();
                       setShowMenu(false);
                     }}
                     className="hover:text-primary cursor-pointer py-2 px-4 transition"
