@@ -1,5 +1,6 @@
 // src/pages/RelatedDoctors.jsx
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,8 +30,10 @@ export const RelatedDoctors = ({ speciality, docId }) => {
         {relDoc.slice(0, 5).map((item, index) => (
           <div
             key={index}
-            onClick={() => {navigate(`/appointment/${item._id}`); 
-        scrollTo(0,0)}}
+            onClick={() => {
+              navigate(`/appointment/${item._id}`);
+              window.scrollTo(0, 0);
+            }}
             className='p-4 border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500'
           >
             <img src={item.image} alt={item.name} className='bg-blue-50 w-full h-auto rounded' />
@@ -47,4 +50,9 @@ export const RelatedDoctors = ({ speciality, docId }) => {
       </div>
     </div>
   );
+};
+
+RelatedDoctors.propTypes = {
+  speciality: PropTypes.string.isRequired,
+  docId: PropTypes.string.isRequired,
 };

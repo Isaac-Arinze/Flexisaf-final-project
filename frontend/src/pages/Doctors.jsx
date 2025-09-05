@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 export const Doctors = () => {
@@ -64,13 +64,15 @@ export const Doctors = () => {
               <div
                 key={doctor._id}
                 onClick={() => navigate(`/appointment/${doctor._id}`)}
-                className="p-4 border rounded-xl cursor-pointer shadow-sm hover:shadow-lg hover:scale-105 transition-all"
+                className="p-4 border rounded-xl cursor-pointer shadow-sm hover:shadow-lg hover:scale-105 transition-all flex flex-col"
               >
-                <img
-                  src={doctor.image}
-                  alt={doctor.name}
-                  className="w-full h-32 object-cover rounded-t-lg bg-blue-50"
-                />
+                <div className="w-full aspect-[4/3] flex items-center justify-center bg-blue-50 rounded-t-lg overflow-hidden">
+                  <img
+                    src={doctor.image}
+                    alt={doctor.name}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
                 <div className="p-3">
                   <div className="flex items-center gap-2 text-sm text-green-500">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
